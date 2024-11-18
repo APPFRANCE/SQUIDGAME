@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squid Game by EF</title>
+    <style>
+        /* Intégration de la police Game Of Squids */
+        @font-face {
+            font-family: "GameOfSquids";
+            src: url("Game Of Squids.ttf") format("truetype");
+        }
+
+        /* Global styles */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            font-family: 'GameOfSquids', Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            font-size: 4rem;
+            color: #ff0057; /* Couleur rouge vif */
+            text-align: center;
+            margin: 20px 0;
+            text-shadow: 2px 2px 10px #ff0057;
+        }
+
+        .teams-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .team-card {
+            background-color: rgba(36, 138, 152, 255);
+            color: white;
+            border: 3px solid #ff0057;
+            border-radius: 15px;
+            padding: 15px;
+            width: 200px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: left;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .team-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .team-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .team-card ul li {
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+
+        .countdown {
+            font-size: 1.5rem;
+            color: yellow;
+            text-shadow: 0 0 10px yellow;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* Admin panel styles */
+        #admin-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #admin-panel input {
+            padding: 10px;
+            margin: 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #admin-panel button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #ff0057;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background & Titre -->
+    <h1>Squid Game by EF</h1>
+
+    <!-- Teams -->
+    <div class="teams-container">
+        <!-- Dynamique : Ajout des 6 équipes -->
+        <div class="team-card">
+            <h2>Équipe Alpha</h2>
+            <p><strong>Cagnotte : 3000€</strong></p>
+            <ul>
+                <li>Capitaine : John Doe</li>
+                <li>Membre : Jane Smith</li>
+                <li>Membre : Bob Brown</li>
+                <li>Membre : Alice White</li>
+                <li>Membre : Lisa Green</li>
+            </ul>
+        </div>
+
+        <div class="team-card">
+            <h2>Équipe Beta</h2>
+            <p><strong>Cagnotte : 2800€</strong></p>
+            <ul>
+                <li>Capitaine : Mark Lee</li>
+                <li>Membre : Emma Black</li>
+                <li>Membre : Tom Green</li>
+                <li>Membre : Sarah Johnson</li>
+                <li>Membre : Alex Grey</li>
+            </ul>
+        </div>
+
+        <div class="team-card">
+            <h2>Équipe Gamma</h2>
+            <p><strong>Cagnotte : 3100€</strong></p>
+            <ul>
+                <li>Capitaine : Clara Brown</li>
+                <li>Membre : Paul White</li>
+                <li>Membre : Jake Green</li>
+                <li>Membre : Laura Black</li>
+                <li>Membre : Henry Grey</li>
+            </ul>
+        </div>
+
+        <div class="team-card">
+            <h2>Équipe Delta</h2>
+            <p><strong>Cagnotte : 2900€</strong></p>
+            <ul>
+                <li>Capitaine : Emily Red</li>
+                <li>Membre : James Pink</li>
+                <li>Membre : Oscar Blue</li>
+                <li>Membre : Sophie Orange</li>
+                <li>Membre : Lily Purple</li>
+            </ul>
+        </div>
+
+        <div class="team-card">
+            <h2>Équipe Epsilon</h2>
+            <p><strong>Cagnotte : 2700€</strong></p>
+            <ul>
+                <li>Capitaine : Ben Yellow</li>
+                <li>Membre : Alice Cyan</li>
+                <li>Membre : Tom Magenta</li>
+                <li>Membre : Mia Lime</li>
+                <li>Membre : George Navy</li>
+            </ul>
+        </div>
+
+        <div class="team-card">
+            <h2>Équipe Zeta</h2>
+            <p><strong>Cagnotte : 2500€</strong></p>
+            <ul>
+                <li>Capitaine : Kate Black</li>
+                <li>Membre : Victor White</li>
+                <li>Membre : Sara Red</li>
+                <li>Membre : Liam Green</li>
+                <li>Membre : Sophie Brown</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Countdown -->
+    <div class="countdown">
+        Temps restant : <span id="countdown-timer">14 jours, 12 heures, 30 minutes</span>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="admin-panel">
+        <h2>Accès ADMIN</h2>
+        <input type="password" id="admin-password" placeholder="Entrer le mot de passe">
+        <button onclick="checkPassword()">OK</button>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Admin Panel Toggle
+        function checkPassword() {
+            const password = document.getElementById("admin-password").value;
+            if (password === "MPUP") {
+                alert("Accès autorisé !");
+                // Transition vers le panel admin ici
+            } else {
+                alert("Mot de passe incorrect.");
+            }
+        }
+
+        // Countdown Timer
+        const endDate = new Date("2024-12-05T19:30:00").getTime();
+        const countdownElement = document.getElementById("countdown-timer");
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = endDate - now;
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            countdownElement.innerHTML = `${days} jours, ${hours} heures, ${minutes} minutes, ${seconds} secondes`;
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
